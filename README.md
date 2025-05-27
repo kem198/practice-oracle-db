@@ -1,1 +1,20 @@
 # Practice - Oracle Database
+
+## Setup
+
+```sh
+git clone https://github.com/kem198/practice-oracle-db.git
+cd practice-oracle-db
+docker compose up -d
+docker compose exec db sqlplus APPUSER/__ENTER_ORACLE_PASSWORD_HERE__@localhost/XEPDB1
+```
+
+```sql
+SELECT * FROM APPUSER.EXAMPLES;
+```
+
+## References
+
+- [Oracle Database Express Edition - Repository Detail](https://container-registry.oracle.com/ords/f?p=113:4:7883439364890:::4:P4_REPOSITORY,AI_REPOSITORY,AI_REPOSITORY_NAME,P4_REPOSITORY_NAME,P4_EULA_ID,P4_BUSINESS_AREA_ID:803,803,Oracle%20Database%20Express%20Edition,Oracle%20Database%20Express%20Edition,1,0&cs=3w8UFYApSKJzp35z9zZdqC8NuOmY8EAHlgdbyW3QipXVzellAZB7ccnU3yOUaz4YDouDlm77Ui0I-P4zxHv_mKQ)
+- [Oracle Container Registryを使ってOracle製品をDocker環境で動かしてみる \#oracle - Qiita](https://qiita.com/charon/items/44624e2cdf21449769cf)
+- [【Docker】Oracleを無料で簡単にローカルに構築する](https://zenn.dev/re24_1986/articles/29430f2f8b4b46)
