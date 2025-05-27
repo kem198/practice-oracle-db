@@ -4,11 +4,11 @@ services:
     ports:
       - "1521:1521"
     environment:
-      - ORACLE_PWD=__ENTER_ADMIN_PASSWORD_HERE__
+      - ORACLE_PWD=admin_password
     volumes:
-      - db-store:/opt/oracle/oradata
-      - ./script/startup:/opt/oracle/scripts/startup
+      - db-volume:/opt/oracle/oradata
       - ./script/setup:/opt/oracle/scripts/setup
+      - ./script/startup:/opt/oracle/scripts/startup
     restart: unless-stopped
 volumes:
-  db-store:
+  db-volume:
