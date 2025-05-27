@@ -23,6 +23,12 @@ docker compose exec db sqlplus pdbadmin/__ENTER_ADMIN_PASSWORD_HERE__@XEPDB1
 docker compose exec db sqlplus APPUSER/__ENTER_APPUSER_PASSWORD_HERE__@XEPDB1
 ```
 
+## License
+
+This repository uses [Oracle Database XE](https://www.oracle.com/jp/database/technologies/appdev/xe.html) under the [Oracle Free Use Terms and Conditions](https://www.oracle.com/downloads/licenses/oracle-free-license.html).
+
+The full license text is available in the [LICENSE](./LICENSE) file.
+
 ## References
 
 - [Oracle Database Express Edition - Repository Detail](https://container-registry.oracle.com/ords/f?p=113:4:5050694688007:::4:P4_REPOSITORY,AI_REPOSITORY,AI_REPOSITORY_NAME,P4_REPOSITORY_NAME,P4_EULA_ID,P4_BUSINESS_AREA_ID:803,803,Oracle%20Database%20Express%20Edition,Oracle%20Database%20Express%20Edition,1,0&cs=3oQDD5bKN0uKPlM4cbUTplI8klg4dSyCU7vkE8T1UVokexF9WHn2wR6xE1Z5i7W50TlQ3xq-2irOUPwTlyE3onA)
