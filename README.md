@@ -1,13 +1,19 @@
 # Practice - Oracle Database
 
-## Setup
-
 ```sh
 # Clone
 git clone https://github.com/kem198/practice-oracle-db.git
 cd practice-oracle-db
 
-# Up service
+# (Optional) Change password for admin users (sys, system, pdbadmin)
+vim docker-compose.yml
+  # Change the value of `ORACLE_PWD=__ENTER_ADMIN_PASSWORD_HERE__`
+
+# (Optional) Change password for application user (APPUSER)
+vim script/setup/01_create_examples_table.sql
+  # Change the value of `CREATE USER APPUSER IDENTIFIED BY __ENTER_APPUSER_PASSWORD_HERE__;`
+
+# Start service
 docker compose up -d
 
 # Login
