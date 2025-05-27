@@ -3,14 +3,18 @@
 ## Setup
 
 ```sh
+# Clone
 git clone https://github.com/kem198/practice-oracle-db.git
 cd practice-oracle-db
-docker compose up -d
-docker compose exec db sqlplus APPUSER/__ENTER_ORACLE_PASSWORD_HERE__@localhost/XEPDB1
-```
 
-```sql
-SELECT * FROM APPUSER.EXAMPLES;
+# Up service
+docker compose up -d
+
+# Login
+docker compose exec db sqlplus sys/__ENTER_ADMIN_PASSWORD_HERE__@XEPDB1 as sysdba
+docker compose exec db sqlplus system/__ENTER_ADMIN_PASSWORD_HERE__@XEPDB1
+docker compose exec db sqlplus pdbadmin/__ENTER_ADMIN_PASSWORD_HERE__@XEPDB1
+docker compose exec db sqlplus APPUSER/__ENTER_APPUSER_PASSWORD_HERE__@XEPDB1
 ```
 
 ## References
