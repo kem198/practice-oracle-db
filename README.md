@@ -6,21 +6,30 @@ git clone https://github.com/kem198/practice-oracle-db.git
 cd practice-oracle-db
 
 # (Optional) Change password for admin users (sys, system, pdbadmin)
-# Change the value of `ORACLE_PWD=__ENTER_ADMIN_PASSWORD_HERE__`
+# Change the value of `ORACLE_PWD=admin_password`
+#                                 ^^^^^^^^^^^^^^
 vim docker-compose.yml
 
 # (Optional) Change password for application user (APPUSER)
-# Change the value of `CREATE USER APPUSER IDENTIFIED BY __ENTER_APPUSER_PASSWORD_HERE__;`
-vim script/setup/01_create_examples_table.sql
+# Change the value of `CREATE USER APPUSER IDENTIFIED BY appuser_password;`
+#                                                        ^^^^^^^^^^^^^^^^
+vim script/setup/01_create_appuser.sql
 
 # Start service
 docker compose up -d
 
 # Login
-docker compose exec db sqlplus sys/__ENTER_ADMIN_PASSWORD_HERE__@XEPDB1 as sysdba
-docker compose exec db sqlplus system/__ENTER_ADMIN_PASSWORD_HERE__@XEPDB1
-docker compose exec db sqlplus pdbadmin/__ENTER_ADMIN_PASSWORD_HERE__@XEPDB1
-docker compose exec db sqlplus APPUSER/__ENTER_APPUSER_PASSWORD_HERE__@XEPDB1
+docker compose exec db sqlplus sys/admin_password@XEPDB1 as sysdba
+docker compose exec db sqlplus system/admin_password@XEPDB1
+docker compose exec db sqlplus pdbadmin/admin_password@XEPDB1
+docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
+```
+
+```sql
+@/opt/oracle/scripts/setup/01_create_appuser.sql
+@/opt/oracle/scripts/setup/02_create_examples_table.sql
+SELECT * FROM APPUSER.EXAMPLES;
+SELECT TABLE_NAME FROM ALL_TABLES WHERE OWNER = 'APPUSER';
 ```
 
 ## License
