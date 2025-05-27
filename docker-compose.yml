@@ -1,0 +1,14 @@
+services:
+  db:
+    image: container-registry.oracle.com/database/express:21.3.0-xe
+    ports:
+      - "1521:1521"
+    environment:
+      - ORACLE_PWD=__ENTER_ADMIN_PASSWORD_HERE__
+    volumes:
+      - db-store:/opt/oracle/oradata
+      - ./script/startup:/opt/oracle/scripts/startup
+      - ./script/setup:/opt/oracle/scripts/setup
+    restart: unless-stopped
+volumes:
+  db-store:
