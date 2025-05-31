@@ -1,0 +1,6 @@
+{
+  "Prettier-SQL.expressionWidth": 50,
+  "Prettier-SQL.keywordCase": "upper",
+  "Prettier-SQL.newlineBeforeSemicolon": true,
+  "Prettier-SQL.SQLFlavourOverride": "plsql"
+}
