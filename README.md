@@ -29,17 +29,23 @@ docker compose exec db sqlplus pdbadmin/admin_password@XEPDB1
 docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
 ```
 
-### Execute DDL
+### Run DDL
 
 > [!NOTE]
 > After logging in to the database, please execute the following commands and SQL statements manually.
 > Migration from the referenced materials did not work as expected.
 
 ```sql
+-- Run DDL scripts
 @/opt/oracle/scripts/setup/01_create_appuser.sql
-@/opt/oracle/scripts/setup/02_create_examples_table.sql
+@/opt/oracle/scripts/setup/02_create_appuser_examples.sql
+
+-- Check using SQL
 SELECT * FROM APPUSER.EXAMPLES;
 SELECT TABLE_NAME FROM ALL_TABLES WHERE OWNER = 'APPUSER';
+
+-- Check using SQL in the mounted directory
+@/sql/select_appuser_examples.sql
 ```
 
 ## License
