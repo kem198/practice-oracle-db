@@ -1,6 +1,8 @@
 # Practice - Oracle Database
 
-## Start up database
+## Setup
+
+### Start up database
 
 ```sh
 # Clone
@@ -27,7 +29,7 @@ docker compose exec db sqlplus pdbadmin/admin_password@XEPDB1
 docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
 ```
 
-## Execute DDL
+### Execute DDL
 
 > [!NOTE]
 > After logging in to the database, please execute the following commands and SQL statements manually.
