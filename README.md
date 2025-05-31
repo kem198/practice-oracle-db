@@ -1,5 +1,7 @@
 # Practice - Oracle Database
 
+## Start up database
+
 ```sh
 # Clone
 git clone https://github.com/kem198/practice-oracle-db.git
@@ -24,6 +26,12 @@ docker compose exec db sqlplus system/admin_password@XEPDB1
 docker compose exec db sqlplus pdbadmin/admin_password@XEPDB1
 docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
 ```
+
+## Execute DDL
+
+> [!NOTE]
+> After logging in to the database, please execute the following commands and SQL statements manually.
+> Migration from the referenced materials did not work as expected.
 
 ```sql
 @/opt/oracle/scripts/setup/01_create_appuser.sql
