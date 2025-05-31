@@ -41,11 +41,11 @@ docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
 @/opt/oracle/scripts/setup/02_create_appuser_examples.sql
 
 -- Check using SQL
-SELECT * FROM APPUSER.EXAMPLES;
 SELECT TABLE_NAME FROM ALL_TABLES WHERE OWNER = 'APPUSER';
+SELECT * FROM APPUSER.EXAMPLES;
 
 -- Check using SQL in the mounted directory
-@/sql/select_appuser_examples.sql
+@/sql/setup/select_appuser_examples.sql
 ```
 
 ## License
