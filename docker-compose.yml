@@ -9,6 +9,7 @@ services:
       - db-volume:/opt/oracle/oradata
       - ./scripts/setup:/opt/oracle/scripts/setup
       - ./scripts/startup:/opt/oracle/scripts/startup
+      - ./sql:/sql
     restart: unless-stopped
 volumes:
   db-volume:
