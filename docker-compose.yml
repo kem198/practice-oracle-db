@@ -7,8 +7,8 @@ services:
       - ORACLE_PWD=admin_password
     volumes:
       - db-volume:/opt/oracle/oradata
-      - ./script/setup:/opt/oracle/scripts/setup
-      - ./script/startup:/opt/oracle/scripts/startup
+      - ./scripts/setup:/opt/oracle/scripts/setup
+      - ./scripts/startup:/opt/oracle/scripts/startup
     restart: unless-stopped
 volumes:
   db-volume:
