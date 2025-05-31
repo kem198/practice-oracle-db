@@ -1,3 +1,4 @@
+-- @/opt/oracle/scripts/setup/01_create_appuser.sql
 -- Create APPUSER user
 CREATE USER APPUSER IDENTIFIED BY appuser_password
 ;

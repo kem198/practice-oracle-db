@@ -1,3 +1,4 @@
+-- @/opt/oracle/scripts/setup/02_create_appuser_examples.sql
 -- Create EXAMPLES table in APPUSER schema
 CREATE TABLE
     APPUSER.EXAMPLES (

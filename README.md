@@ -45,7 +45,7 @@ SELECT TABLE_NAME FROM ALL_TABLES WHERE OWNER = 'APPUSER';
 SELECT * FROM APPUSER.EXAMPLES;
 
 -- Check using SQL in the mounted directory
-@/sql/setup/select_appuser_examples.sql
+@/sql/setup/01_select_appuser_examples.sql
 ```
 
 ## License
