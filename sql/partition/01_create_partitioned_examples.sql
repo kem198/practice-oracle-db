@@ -15,6 +15,9 @@ PARTITION BY
             PARTITION p2024
         VALUES
             LESS THAN (TO_DATE('2025-01-01', 'YYYY-MM-DD')),
+            PARTITION p2025
+        VALUES
+            LESS THAN (TO_DATE('2026-01-01', 'YYYY-MM-DD')),
             PARTITION pmax
         VALUES
             LESS THAN (MAXVALUE)
@@ -61,28 +64,64 @@ VALUES
     )
 ;
 
--- 確認 (パーティション未指定)
+INSERT INTO
+    APPUSER.PARTITIONED_EXAMPLES (NAME, CREATED_BY, CREATED_AT)
+VALUES
+    (
+        'Charlie',
+        'system',
+        TO_TIMESTAMP(
+            '2099-01-01 00:00:00.000',
+            'YYYY-MM-DD HH24:MI:SS.FF3'
+        )
+    )
+;
+
+-- 確認 (テーブル作成)
+SELECT
+    TABLE_NAME
+FROM
+    USER_TABLES
+;
+
+-- 確認 (レコード - パーティション未指定)
 SELECT
     *
 FROM
     APPUSER.PARTITIONED_EXAMPLES
+ORDER BY
+    ID
 ;
 
--- 確認 (パーティション指定)
+-- 確認 (レコード - パーティション指定)
 SELECT
     *
 FROM
     APPUSER.PARTITIONED_EXAMPLES PARTITION (p2023)
+ORDER BY
+    ID
 ;
 
 SELECT
     *
 FROM
     APPUSER.PARTITIONED_EXAMPLES PARTITION (p2024)
+ORDER BY
+    ID
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (p2025)
+ORDER BY
+    ID
 ;
 
 SELECT
     *
 FROM
     APPUSER.PARTITIONED_EXAMPLES PARTITION (pmax)
+ORDER BY
+    ID
 ;

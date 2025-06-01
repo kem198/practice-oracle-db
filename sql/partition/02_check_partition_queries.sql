@@ -19,6 +19,7 @@ WHERE
 ;
 
 -- ROW MOVEMENT の状態確認
+-- -> ROW_MOVEMENT: DISABLED
 SELECT
     TABLE_NAME,
     ROW_MOVEMENT
@@ -35,7 +36,7 @@ WHERE
  ************************************************/
 UPDATE APPUSER.PARTITIONED_EXAMPLES
 SET
-    NAME = 'UPDATED_NAME'
+    NAME = 'Alice ★UPDATED'
 WHERE
     ID = 1
 ;
@@ -66,7 +67,19 @@ WHERE
 3. ROW MOVEMENT を有効化
 
  ************************************************/
+-- 有効化
 ALTER TABLE APPUSER.PARTITIONED_EXAMPLES ENABLE ROW MOVEMENT
+;
+
+-- ROW MOVEMENT の状態確認
+-- -> ROW_MOVEMENT: ENABLED
+SELECT
+    TABLE_NAME,
+    ROW_MOVEMENT
+FROM
+    USER_TABLES
+WHERE
+    TABLE_NAME = 'PARTITIONED_EXAMPLES'
 ;
 
 /************************************************
@@ -81,6 +94,17 @@ WHERE
     ID = 1
 ;
 
+-- または下記
+UPDATE APPUSER.PARTITIONED_EXAMPLES
+SET
+    CREATED_AT = TO_TIMESTAMP(
+        '2099-01-01 09:00:00.000',
+        'YYYY-MM-DD HH24:MI:SS.FF3'
+    )
+WHERE
+    ID = 1
+;
+
 /************************************************
 5. 結果確認
  ************************************************/
@@ -88,6 +112,38 @@ SELECT
     *
 FROM
     APPUSER.PARTITIONED_EXAMPLES
+ORDER BY
+    ID
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (p2023)
+ORDER BY
+    ID
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (p2024)
+ORDER BY
+    ID
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (p2025)
+ORDER BY
+    ID
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (pmax)
 ORDER BY
     ID
 ;
