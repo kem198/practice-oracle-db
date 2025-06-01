@@ -21,32 +21,42 @@ vim script/setup/01_create_appuser.sql
 
 # Start service
 docker compose up -d
-
-# Login
-docker compose exec db sqlplus sys/admin_password@XEPDB1 as sysdba
-docker compose exec db sqlplus system/admin_password@XEPDB1
-docker compose exec db sqlplus pdbadmin/admin_password@XEPDB1
-docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
 ```
 
-### Run DDL
+### Create first user and sample data
 
 > [!NOTE]
-> After logging in to the database, please execute the following commands and SQL statements manually.
-> Migration from the referenced materials did not work as expected.
+> Please use the following steps to create the APPUSER and sample data, because migration did not work as expected when following the references.
 
-```sql
--- Run DDL scripts
-@/opt/oracle/scripts/setup/01_create_appuser.sql
-@/opt/oracle/scripts/setup/02_create_appuser_examples.sql
+1. Log in as the system user:
 
--- Check using SQL
-SELECT TABLE_NAME FROM ALL_TABLES WHERE OWNER = 'APPUSER';
-SELECT * FROM APPUSER.EXAMPLES;
+    ```shell
+    docker compose exec db sqlplus system/admin_password@XEPDB1
+    ```
 
--- Check using SQL in the mounted directory
-@/sql/setup/01_select_appuser_examples.sql
-```
+2. Execute the following script to create `APPUSER`:
+
+    ```sql
+    @/opt/oracle/scripts/setup/01_create_appuser.sql
+    ```
+
+3. Log out and log in as `APPUSER`:
+
+    ```sql
+    exit
+    ```
+
+    ```shell
+    docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
+    ```
+
+4. Execute the following script to create tables and insert sample data:
+
+    ```sql
+    @/opt/oracle/scripts/setup/02_create_appuser_examples.sql
+    ```
+
+You can now run queries and practice as a regular application user.
 
 ## License
 
