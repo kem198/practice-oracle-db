@@ -55,7 +55,7 @@ docker compose up -d
 
 3. Type `exit` to log out, then log in as `APPUSER` :
 
-    ```sql:aaa
+    ```sql
     exit
     ```
 
