@@ -39,7 +39,7 @@ docker compose up -d
 ### Create first user and sample data
 
 > [!NOTE]
-> Please use the following steps to create the APPUSER and sample data, because migration did not work as expected when following the references.
+> Please use the following steps to create the `APPUSER` and sample data, because migration did not work as expected when following the references.
 
 1. Log in as the system user:
 
