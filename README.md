@@ -43,29 +43,34 @@ docker compose up -d
 
 1. Log in as the system user:
 
-    ```shell
+    ```sh
+    # In your terminal
     docker compose exec db sqlplus system/admin_password@XEPDB1
     ```
 
 2. Execute the following script to create `APPUSER` :
 
     ```sql
+    -- In SQL*Plus
     @/opt/oracle/scripts/setup/01_create_appuser.sql
     ```
 
-3. Type `exit` to log out, then log in as `APPUSER` :
+3. Log out and log in as `APPUSER` :
 
     ```sql
+    -- In SQL*Plus
     exit
     ```
 
-    ```shell
+    ```sh
+    # In your terminal
     docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
     ```
 
 4. Execute the following script to create tables and insert sample data:
 
     ```sql
+    -- In SQL*Plus
     @/opt/oracle/scripts/setup/02_create_appuser_examples.sql
     ```
 
