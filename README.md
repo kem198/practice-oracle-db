@@ -1,4 +1,17 @@
+<!-- omit in toc -->
 # Practice - Oracle Database
+
+<!-- omit in toc -->
+## TOC
+
+- [Setup](#setup)
+    - [Start up database](#start-up-database)
+    - [Create first user and sample data](#create-first-user-and-sample-data)
+- [Memos](#memos)
+    - [Log in with sqlplus on Docker Compose](#log-in-with-sqlplus-on-docker-compose)
+    - [Log in with A5:SQL Mk-2](#log-in-with-a5sql-mk-2)
+- [License](#license)
+- [References](#references)
 
 ## Setup
 
