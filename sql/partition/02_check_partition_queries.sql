@@ -29,34 +29,7 @@ WHERE
 ;
 
 /************************************************
-1. パーティションキー (CREATED_AT) の値を更新する
-
--> (失敗) ORA-14402: updating partition key column would cause a row to move to a different partition
- ************************************************/
-UPDATE APPUSER.PARTITIONED_EXAMPLES
-SET
-    CREATED_AT = TO_TIMESTAMP('2024-05-31 00:00:00', 'YYYY-MM-DD HH24:MI:SS')
-;
-
-/************************************************
-2. ROW MOVEMENT を有効化
-
- ************************************************/
-ALTER TABLE APPUSER.PARTITIONED_EXAMPLES ENABLE ROW MOVEMENT
-;
-
-/************************************************
-3. パーティションキー (CREATED_AT) の値を更新し、成功する例
-
--> (成功) レコードが別パーティションに移動
- ************************************************/
-UPDATE APPUSER.PARTITIONED_EXAMPLES
-SET
-    CREATED_AT = TO_TIMESTAMP('2024-05-31 00:00:00', 'YYYY-MM-DD HH24:MI:SS')
-;
-
-/************************************************
-4. パーティションキー以外の属性 (NAME) を更新 (常に成功する例)
+1. パーティションキー以外の属性 (NAME) を更新
 
 -> (成功) 問題なく更新できる
  ************************************************/
@@ -64,7 +37,48 @@ UPDATE APPUSER.PARTITIONED_EXAMPLES
 SET
     NAME = 'UPDATED_NAME'
 WHERE
-    NAME IS NOT NULL
+    ID = 1
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES
+ORDER BY
+    ID
+;
+
+/************************************************
+2. パーティションキー (CREATED_AT) の値を更新する
+
+-> (失敗)
+ORA-14402: updating partition key column would cause a row to move to a different partition
+ORA-14402: パーティション・キー列を更新するとパーティションが変更されます。
+ ************************************************/
+UPDATE APPUSER.PARTITIONED_EXAMPLES
+SET
+    CREATED_AT = SYSTIMESTAMP
+WHERE
+    ID = 1
+;
+
+/************************************************
+3. ROW MOVEMENT を有効化
+
+ ************************************************/
+ALTER TABLE APPUSER.PARTITIONED_EXAMPLES ENABLE ROW MOVEMENT
+;
+
+/************************************************
+4. パーティションキー (CREATED_AT) の値を更新し、成功する例
+
+-> (成功) レコードが別パーティションに移動
+ ************************************************/
+UPDATE APPUSER.PARTITIONED_EXAMPLES
+SET
+    CREATED_AT = SYSTIMESTAMP
+WHERE
+    ID = 1
 ;
 
 /************************************************
@@ -74,4 +88,6 @@ SELECT
     *
 FROM
     APPUSER.PARTITIONED_EXAMPLES
+ORDER BY
+    ID
 ;
