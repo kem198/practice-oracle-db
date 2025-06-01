@@ -23,26 +23,66 @@ PARTITION BY
 
 -- レコードを挿入
 INSERT INTO
-    APPUSER.PARTITIONED_EXAMPLES (NAME, CREATED_BY)
+    APPUSER.PARTITIONED_EXAMPLES (NAME, CREATED_BY, CREATED_AT)
 VALUES
-    ('Alice', 'admin')
+    (
+        'Alice',
+        'admin',
+        TO_TIMESTAMP(
+            '2023-01-01 00:00:00.000',
+            'YYYY-MM-DD HH24:MI:SS.FF3'
+        )
+    )
 ;
 
 INSERT INTO
-    APPUSER.PARTITIONED_EXAMPLES (NAME, CREATED_BY)
+    APPUSER.PARTITIONED_EXAMPLES (NAME, CREATED_BY, CREATED_AT)
 VALUES
-    ('Bob', 'admin')
+    (
+        'Bob',
+        'admin',
+        TO_TIMESTAMP(
+            '2024-01-01 00:00:00.000',
+            'YYYY-MM-DD HH24:MI:SS.FF3'
+        )
+    )
 ;
 
 INSERT INTO
-    APPUSER.PARTITIONED_EXAMPLES (NAME, CREATED_BY)
+    APPUSER.PARTITIONED_EXAMPLES (NAME, CREATED_BY, CREATED_AT)
 VALUES
-    ('Charlie', 'system')
+    (
+        'Charlie',
+        'system',
+        TO_TIMESTAMP(
+            '2025-01-01 00:00:00.000',
+            'YYYY-MM-DD HH24:MI:SS.FF3'
+        )
+    )
 ;
 
--- 確認
+-- 確認 (パーティション未指定)
 SELECT
     *
 FROM
     APPUSER.PARTITIONED_EXAMPLES
+;
+
+-- 確認 (パーティション指定)
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (p2023)
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (p2024)
+;
+
+SELECT
+    *
+FROM
+    APPUSER.PARTITIONED_EXAMPLES PARTITION (pmax)
 ;
