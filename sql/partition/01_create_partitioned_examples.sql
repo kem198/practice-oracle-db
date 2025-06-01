@@ -1,4 +1,4 @@
--- @/sql/partition/01_create_partitioned_examples_part.sql
+-- @/sql/partition/01_create_partitioned_examples.sql
 -- パーティションを持つテーブルを作成
 CREATE TABLE
     APPUSER.PARTITIONED_EXAMPLES (
