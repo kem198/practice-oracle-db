@@ -58,6 +58,23 @@ docker compose up -d
 
 You can now run queries and practice as a regular application user.
 
+## Memos
+
+### Log in with sqlplus on Docker Compose
+
+```sh
+docker compose exec db sqlplus sys/admin_password@XEPDB1 as sysdba
+docker compose exec db sqlplus system/admin_password@XEPDB1
+docker compose exec db sqlplus pdbadmin/admin_password@XEPDB1
+docker compose exec db sqlplus APPUSER/appuser_password@XEPDB1
+```
+
+### Log in with [A5:SQL Mk-2](https://a5m2.mmatsubara.com/)
+
+log in as `APPUSER` :
+
+![a5m2](./images/a5m2.png)
+
 ## License
 
 This repository uses [Oracle Database XE](https://www.oracle.com/jp/database/technologies/appdev/xe.html) under the [Oracle Free Use Terms and Conditions](https://www.oracle.com/downloads/licenses/oracle-free-license.html).
